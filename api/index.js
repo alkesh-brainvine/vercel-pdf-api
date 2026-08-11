@@ -1,3 +1,6 @@
+// Force AWS Lambda / Vercel environment detection for @sparticuz/chromium
+process.env.AWS_LAMBDA_JS_RUNTIME = 'nodejs20.x';
+
 const chromium = require('@sparticuz/chromium');
 const puppeteer = require('puppeteer-core');
 const path = require('path');
@@ -36,11 +39,6 @@ module.exports = async (req, res) => {
         chromium.setGraphicsMode = false;
 
         const executablePath = await chromium.executablePath();
-        
-        // Fix for missing shared libraries on Vercel's Amazon Linux 2023 environment
-        if (executablePath) {
-            process.env.LD_LIBRARY_PATH = path.dirname(executablePath);
-        }
 
         browser = await puppeteer.launch({
             args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
