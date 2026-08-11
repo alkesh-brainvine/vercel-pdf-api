@@ -1,0 +1,12 @@
+{
+  "name": "vercel-pdf-api",
+  "version": "1.0.0",
+  "description": "Serverless PDF Generator using Puppeteer on Vercel",
+  "scripts": {
+    "start": "node api/index.js"
+  },
+  "dependencies": {
+    "@sparticuz/chromium": "^123.0.1",
+    "puppeteer-core": "^22.6.0"
+  }
+}
